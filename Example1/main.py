@@ -9,7 +9,7 @@ if __name__ == "__main__":
     spark = SparkSession.builder.appName('Example1').getOrCreate()
 
     columns = ["name","languagesAtSchool","currentState"]
-    data = [("James,Smith",["Java","Scala","C++"],"CA"), \
+    data = [("James,,Smith",["Java","Scala","C++"],"CA"), \
         ("Michael,Rose,",["Spark","Java","C++"],"NJ"), \
         ("Robert,Williams",["CSharp","VB"],"NV")]
 
