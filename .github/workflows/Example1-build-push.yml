@@ -30,7 +30,8 @@ jobs:
         id: build-and-push-latest
         uses: docker/build-push-action@v2
         with:
-          file: Example1/Dockerfile
+          context: Example1
+          file: ./Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
            
