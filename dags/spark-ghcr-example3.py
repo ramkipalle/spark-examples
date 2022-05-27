@@ -21,6 +21,10 @@ spark_pi_task = OceanSparkOperator(
         "sparkVersion": "3.2.0",
         "imagePullSecrets": ["github-pull-image-secret"],
         "image": "ghcr.io/ramkipalle/spark-examples/example1:latest",
-        "mainApplicationFile": "local:///opt/application/main.py"
-    },
+        "mainApplicationFile": "local:///opt/application/main.py",
+        "executor": {
+            "cores": 2,
+            "instances": 1
+        }
+    }
 )
