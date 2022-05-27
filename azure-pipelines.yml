@@ -2,8 +2,14 @@
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+
 trigger:
-- main
+  branches:
+    include:
+    - main  
+  paths:
+    include:
+    - 'Example1/*' 
 
 resources:
 - repo: self
