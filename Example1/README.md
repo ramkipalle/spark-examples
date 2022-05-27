@@ -1,19 +1,19 @@
-CICD - Build Docker image and push it to Github Container Registry
+## CICD - Build Docker image and push it to Github Container Registry
 
-1. Create a new workflow from the Actions menu of the repository
+1. Create a new workflow from the Actions menu of the repository. 
     In this case, the workflow name is docker-image-build-push-example.yml created in .github/workflows folder
 
-    This workflow gets triggered whenever there is a checkin happens in cicd folder in the main branch.
+    This workflow gets triggered whenever there is a code checkin happens in cicd folder in the main branch.
 
 2. Create two github secrets
 
-    GHCR_PASSWORD - Use this secret to publish the docker images to the github docker container registry. The personal access token associated with this secret has read, write and delete packages permissions.
-    GHCR_PULL_PASSWORD - Use this secret in APIs, airflow to pull images from the container registry. The personal access token associated with this secret has read packages permissions.
+    <p>GHCR_PASSWORD - Use this secret to publish the docker images to the github docker container registry. The personal access token associated with this secret has read, write and delete packages permissions.
+    <p>GHCR_PULL_PASSWORD - Use this secret in APIs, airflow to pull images from the container registry. The personal access token associated with this secret has read packages permissions.
 
 3.  Create a kubernetes secret that connects to github docker container registry to pull the images
 
     Note: Make sure you create the secret in spark-apps namespace
-    The following instructions gives steps to create the secret from command line using kubectl
+    The following instructions provide steps to create the secret from command line using kubectl
     
     a. Set the context to spark-apps namespace
         kubectl config set-context --current --namespace=spark-apps
@@ -32,11 +32,11 @@ CICD - Build Docker image and push it to Github Container Registry
         }
 
 
-CICD - Build Docker image and push it to Azure Container Registry
+## CICD - Build Docker image and push it to Azure Container Registry
 
 1. Create an Azure DevOps pipeline 
 
-    This pipeline gets triggered whenever there is a checkin happens in cicd folder in the main branch.
+    This pipeline gets triggered whenever there is a code checkin happens in cicd folder in the main branch.
     The pipeline builds and pushes the docker image to Azure Container Registry
 
 2. Create a service principal
@@ -45,7 +45,7 @@ CICD - Build Docker image and push it to Azure Container Registry
 3.  Create a kubernetes secret that connects to Azure container registry to pull the images
 
     Note: Make sure you create the secret in spark-apps namespace
-    The following instructions gives steps to create the secret from command line using kubectl
+    The following instructions provide steps to create the secret from command line using kubectl
     
     a. Set the context to spark-apps namespace
         kubectl config set-context --current --namespace=spark-apps
