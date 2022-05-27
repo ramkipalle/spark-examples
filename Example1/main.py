@@ -11,7 +11,7 @@ if __name__ == "__main__":
     columns = ["name","languagesAtSchool","currentState"]
     data = [("James,Smith",["Java","Scala","C++"],"CA"), \
         ("Michael,Rose,",["Spark","Java","C++"],"NJ"), \
-        ("Robert,Williams",["CSharp","VB","Java"],"NV")]
+        ("Robert,Williams",["CSharp","VB","Java","C++"],"NV")]
 
     df = spark.createDataFrame(data=data,schema=columns)
     df.printSchema()
