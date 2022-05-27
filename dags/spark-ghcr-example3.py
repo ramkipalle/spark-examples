@@ -19,7 +19,7 @@ spark_pi_task = OceanSparkOperator(
     config_overrides={
         "type": "Python",
         "sparkVersion": "3.2.0",
-        "imagePullSecrets": ["github-secret"],
+        "imagePullSecrets": ["github-pull-image-secret"],
         "image": "ghcr.io/ramkipalle/spark-examples/example1:latest",
         "mainApplicationFile": "local:///opt/application/main.py"
     },
