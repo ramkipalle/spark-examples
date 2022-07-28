@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: VSCode Notebook Publish Docker Image
 
 on: 
   push:
