@@ -23,8 +23,13 @@ spark_pi_task = OceanSparkOperator(
         "imagePullPolicy": "Always",
         "image": "ghcr.io/ramkipalle/spark-examples/helloexample1:latest",
         "mainApplicationFile": "local:///opt/application/HelloExample1.py",
+        "driver": {
+            "cores": 1,
+            "instanceSelector":"m5",
+        },
         "executor": {
-            "cores": 2,
+            "cores": 4,
+            "instanceSelector":"m5d",
             "instances": 1
         }
     }
