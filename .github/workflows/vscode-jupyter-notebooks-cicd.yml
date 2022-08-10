@@ -13,8 +13,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/vscode-jupyter-notebooks
 
-jobs:
-  
+jobs:  
    build:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
