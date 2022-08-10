@@ -59,7 +59,7 @@
         "type": "Python",
         "sparkVersion": "3.2.0",
         "imagePullSecrets": ["acr-pull-image-secret"],
-        "image": "ghcr.io/{path to image}",
+        "image": "{your acr name}.azurecr.io/{path to image}",
         ......
         } 
 
