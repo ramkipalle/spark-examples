@@ -9,6 +9,7 @@ WORKDIR /opt/application/
 COPY ./VSCodeNotebookExample.ipynb .
 
 RUN pip3 install jupyter
+RUN conda update jupyter_core jupyter_client
 RUN jupyter nbconvert --to script VSCodeNotebookExample.ipynb
 
 
