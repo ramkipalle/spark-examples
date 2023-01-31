@@ -6,6 +6,9 @@ on:
     branches: [ master ]
     paths:
       - 'vscode-jupyter-notebooks/**'
+  release:
+    types:
+      - published    
 
 jobs:
   
