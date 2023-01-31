@@ -1,6 +1,8 @@
 FROM gcr.io/datamechanics/spark:platform-3.2-latest
 
 USER root
+RUN curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    && apt-key add apt-key.gpg
 RUN apt-get update && apt-get install -y apt-transport-https python3  python3-pip libffi-dev
 ENV PYSPARK_MAJOR_PYTHON_VERSION=3
 
