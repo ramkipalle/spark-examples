@@ -65,27 +65,32 @@
 
  5. Submitting a spark job from Azure Data Factory
 
-    a. Use Web Activity in an Azure Data Factory pipeline
-    b. Set the URL as https://api.spotinst.io/ocean/spark/cluster/{your ocean spark cluster id}/app?accountId={your spot account ID}   
-    c. Method as POST
-    d. Add the following two headers: 
-            Name                Value
-            Content-Type        application/json
-            Authorization       Bearer {your spot token}
-    e. Add the following in the body
-        {
-            "jobId": "spark-acr-adf",
-                    "configOverrides": {
-                    "type": "Python",
-                    "sparkVersion": "3.2.0",
-                    "imagePullSecrets": ["acr-pull-image-secret"],
-                    "image": "{your acr name}.azurecr.io/{your image name}", 
-                    "mainApplicationFile": "local:///opt/application/main.py",
-                    "executor": {
-                        "cores": 2,
-                        "instances": 1
-                    }
-                }
+
+- Use Web Activity in an Azure Data Factory pipeline
+- Set the URL as `https://api.spotinst.io/ocean/spark/cluster/{your ocean spark cluster id}/app?accountId={your spot account ID}` 
+- Method as `POST` 
+- Add the following two headers: 
+
+    | Name          | Value                           |
+    | ------------- | ------------------------------- |
+    | Content-Type  | application/json                |
+    | Authorization | Bearer {your spot token}        |
+    
+- Add the following in the body:  
+
+        {  
+            "jobId": "spark-acr-adf",  
+            "configOverrides": {  
+                "type": "Python",  
+                "sparkVersion": "3.2.0",  
+                "imagePullSecrets": ["acr-pull-image-secret"],  
+                "image": "{your acr name}.azurecr.io/{your image name}",   
+                "mainApplicationFile": "local:///opt/application/main.py",  
+                "executor": {  
+                    "cores": 2,  
+                    "instances": 1  
+                    }  
+                }  
             }
 
 
