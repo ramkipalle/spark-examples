@@ -1,0 +1,50 @@
+name: Deploy to ECR - OIDC - 2 
+
+on:
+ 
+  push:
+    branches: [main]
+    paths:
+      - 'vscode-jupyter-notebooks/**'
+  release:
+    types:
+      - published   
+      
+env:
+  AWS_REGION: "us-west-2"
+  AWS_ACCOUNT_ID: "513880362487"
+
+jobs:
+  
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-latest
+    
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+             
+      - name: Check out code
+        uses: actions/checkout@v2
+                
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-actions-${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}
+          aws-region: ${{ env.AWS_REGION }}          
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+           
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: vscode-jupyter-notebooks
+          push: true
+          tags: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}:$(date +%Y%m%d-%H%M%S -u +%Z=America/Los_Angeles)
+          
+     
