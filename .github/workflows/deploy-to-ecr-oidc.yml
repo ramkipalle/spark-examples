@@ -57,12 +57,8 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}
-          tags: |
-            type=schedule,pattern=latest
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=ref,event=branch  
+          tags: type=semver,pattern={{major}}.{{minor}}
+            
                     
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
