@@ -41,7 +41,11 @@ jobs:
         with:
           command: aws ssm put-parameter --name "ramkipalle-spark-examples-tag" --value "20230208-040319" --type "String"
 
-    
+      - name: Bash Action
+        uses: rethab/bash-action@v1
+        with:
+          command: aws ssm get-parameter --name "ramkipalle-spark-examples-image-tag" --query "Parameter.Value" --output text
+
 
           
       
