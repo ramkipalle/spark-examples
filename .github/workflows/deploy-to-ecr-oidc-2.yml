@@ -27,6 +27,11 @@ jobs:
 
     steps:
              
+      - name: "Set current date as env variable"
+        id: version 
+        run: |
+          echo "builddate=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+      
       - name: Check out code
         uses: actions/checkout@v2
                 
@@ -45,6 +50,5 @@ jobs:
         with:
           context: vscode-jupyter-notebooks
           push: true
-          tags: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}:$(date +%Y%m%d-%H%M%S -u +%Z=America/Los_Angeles)
-          
+          tags: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}:${{ steps.version.outputs.builddate }}
      
