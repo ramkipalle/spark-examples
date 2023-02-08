@@ -28,8 +28,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: AWS CLI
-        uses: ItsKarma/aws-cli@v1.70.0
+      - name: Setup Python
+        uses: actions/setup-python@v4.5.0
+      
+      - name: Bash Action
+        uses: rethab/bash-action@v1
+        with:
+          command: pip install awscli
         
       - name: Bash Action
         uses: rethab/bash-action@v1
