@@ -58,7 +58,7 @@ jobs:
         with:
           images: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ github.event.repository.owner.name }}-${{ github.event.repository.name }}
           tags: |
-            type=raw,value={{date 'YYYYMMDD-hhmmss' tz='America/Los_Angeles'}}
+            type=raw,value=$(date +%Y%m%d-%H%M%S -u +%Z=America/Los_Angeles)
       
       - name: Echo Tag
         uses: Kaizhe/alpine-echo@v1.0.0
