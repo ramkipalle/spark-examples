@@ -30,7 +30,7 @@ jobs:
       - name: Echo Repo
         uses: Kaizhe/alpine-echo@v1.0.0
         with:
-          message: Repository is ${{ github.event.actor.login }}-${{ github.event.repository.name }}
+          message: Repository is ${{ GITHUB_ACTOR }}-${{ github.event.repository.name }}
 
       - name: Check out code
         uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-actions-${{ github.event.actor.login }}-${{ github.event.repository.name }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-actions-${{ GITHUB_ACTOR }}-${{ github.event.repository.name }}
           aws-region: ${{ env.AWS_REGION }}          
 
       - name: Login to Amazon ECR
