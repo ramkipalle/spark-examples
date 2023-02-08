@@ -26,6 +26,11 @@ jobs:
       contents: read
 
     steps:
+    
+      - name: Echo Repo
+        uses: Kaizhe/alpine-echo@v1.0.0
+        with:
+          message: Repository is ${{ github.event.repository.name }}
 
       - name: Check out code
         uses: actions/checkout@v2
@@ -44,7 +49,7 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login
+        uses: aws-actions/amazon-ecr-login@v1
         
       - name: Extract metadata (tags, labels) for Docker
         id: meta
