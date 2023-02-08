@@ -1,0 +1,42 @@
+name: Test AWS Param Store
+
+on:
+ 
+  push:
+    branches: [main]
+    paths:
+      - 'vscode-jupyter-notebooks/**'
+  release:
+    types:
+      - published    
+
+jobs:
+  
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: AWS CLI
+        uses: ItsKarma/aws-cli@v1.70.0
+        
+      - name: Bash Action
+        uses: rethab/bash-action@v1
+        with:
+          command: aws ssm put-parameter --name "ramkipalle-spark-examples-tag" --value "20230208-040319" --type "String"
+
+    
+
+          
+      
