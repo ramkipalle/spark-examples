@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'vscode-jupyter-notebooks-test/**'
+      - 'vscode-jupyter-notebooks/**'
   release:
     types:
       - published   
